@@ -155,6 +155,7 @@ public class SchedulerSimulation {
         // ⚠️ IMPORTANT: Put your student ID here to seed the random number generator
         // This makes your output unique to you - DO NOT forget to change this!
         int studentID = 445052181; // ← CHANGE THIS TO YOUR ACTUAL STUDENT ID
+        static int contextSwitches = 0; // Feature 2
 
         Random random = new Random(studentID);
 
@@ -248,6 +249,7 @@ public class SchedulerSimulation {
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
 
             // Start the thread, which will run the process for one time quantum
+            contextSwitches++; // Feature 2
             currentThread.start();
 
             try {
@@ -311,5 +313,6 @@ public class SchedulerSimulation {
                 " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" +
                 Colors.RESET +
                 " │ Priority: " + Colors.BRIGHT_YELLOW + process.getPriority() + Colors.RESET); // Feature 1
+        System.out.println("Total context switches: " + contextSwitches);
     }
 }
