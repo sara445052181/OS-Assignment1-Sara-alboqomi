@@ -151,12 +151,12 @@ class Process implements Runnable {
 }
 
 public class SchedulerSimulation {
+    static int contextSwitches = 0; // Feature 2
+
     public static void main(String[] args) {
         // ⚠️ IMPORTANT: Put your student ID here to seed the random number generator
         // This makes your output unique to you - DO NOT forget to change this!
         int studentID = 445052181; // ← CHANGE THIS TO YOUR ACTUAL STUDENT ID
-        static int contextSwitches = 0; // Feature 2
-
         Random random = new Random(studentID);
 
         // Define the time quantum in milliseconds (the maximum time a process gets in
@@ -230,7 +230,6 @@ public class SchedulerSimulation {
         while (!processQueue.isEmpty()) {
             // Get the next thread from the queue (FIFO)
             Thread currentThread = processQueue.poll(); // Dequeues the next thread
-
             // Print the current process queue (list of process IDs in the queue)
             System.out.println(Colors.BOLD + Colors.MAGENTA + "┌─ Ready Queue " + "─".repeat(65) + Colors.RESET);
             System.out.print(Colors.MAGENTA + "│ " + Colors.RESET + Colors.BRIGHT_WHITE + "[" + Colors.RESET);
@@ -249,7 +248,7 @@ public class SchedulerSimulation {
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
 
             // Start the thread, which will run the process for one time quantum
-            contextSwitches++; // Feature 2
+            contextSwitches++;
             currentThread.start();
 
             try {
