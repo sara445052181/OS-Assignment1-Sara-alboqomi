@@ -31,6 +31,9 @@ class Process implements Runnable {
     private int remainingTime; // Time left for the process to finish its execution
     private int priority; // Feature 1
 
+    private long arrivalTime; // Feature 3
+    private long waitingTime = 0;
+
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum, int priority) {
         this.name = name;
@@ -38,6 +41,7 @@ class Process implements Runnable {
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime;
         this.priority = priority; // Feature 1
+        this.arrivalTime = System.currentTimeMillis();
     }
 
     // This method will be called when the thread for this process is started
@@ -148,6 +152,22 @@ class Process implements Runnable {
     public boolean isFinished() {
         return remainingTime <= 0;
     }
+
+    public void addWaitingTime(long time) {
+        this.waitingTime += time;
+    }
+
+    public long getWaitingTime() {
+        return waitingTime;
+    }
+
+    public long getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(long time) {
+        this.arrivalTime = time;
+    }
 }
 
 public class SchedulerSimulation {
@@ -248,7 +268,10 @@ public class SchedulerSimulation {
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
 
             // Start the thread, which will run the process for one time quantum
-            contextSwitches++;
+
+            contextSwitches++; // Feature2
+            Process process = processMap.get(currentThread);
+            process.setArrivalTime(System.currentTimeMillis());
             currentThread.start();
 
             try {
@@ -260,8 +283,9 @@ public class SchedulerSimulation {
             }
 
             // Retrieve the process associated with the thread from the map
-            Process process = processMap.get(currentThread);
-
+            // Feature 3
+            long startTime = System.currentTimeMillis();
+            process.addWaitingTime(startTime - process.getArrivalTime());
             // Check if the process is not finished
             if (!process.isFinished()) {
                 // If the process still has remaining time, check if there are more processes in
@@ -313,5 +337,13 @@ public class SchedulerSimulation {
                 Colors.RESET +
                 " │ Priority: " + Colors.BRIGHT_YELLOW + process.getPriority() + Colors.RESET); // Feature 1
         System.out.println("Total context switches: " + contextSwitches);
+
+        System.out.println("\nProcess Summary:");
+        System.out.println("Name | Burst | Waiting");
+
+        for (Process p : processMap.values()) {
+            System.out.println(p.getName() + " | " + p.getBurstTime() + " | " + p.getWaitingTime());
+
+        }
     }
 }
