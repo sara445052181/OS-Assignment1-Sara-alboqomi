@@ -13,109 +13,110 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Example Entry Format:
 
-### Entry 1 - [April 1, 2026, 2:30 PM]
-**What I did**: Forked the repository and set up my student ID
+### Entry 1 -[March 29, 2026, 3:00 PM]
+**What I did**: Set up the project and ran the initial code
 
 **Details**: 
-- Created GitHub account with university email
-- Forked the starter repository
-- Changed student ID on line 92 to my actual ID (441234567)
-- Compiled and ran the program successfully
+- Opened the project in VS Code
+- Updated my student ID in the code
+- Ran the program successfully
+- Observed how processes are created and executed
 
-**Challenges**: Had to install JDK first because javac wasn't recognized
+  
+**Challenges**: Understanding how threads are connected to processes
 
-**Solution**: Downloaded JDK 17 from Oracle website and set PATH variable
+**Solution**: Watched a short tutorial and understood the difference. 
 
-**Time spent**: 30 minutes
+**Time spent**: 3.5 hours
 
 ---
 
 ## Your Development Log:
 
-### Entry 1 - [Date and Time]
-**What I did**: 
+### Entry 2 - [March 29, 2026, 7:00 PM]
 
-**Details**: 
+**What I did**: Implemented Feature 1 (Process Queue visualization)
 
-**Challenges**: 
+**Details**:
+Examined the behavior of the ready queue
+Print statements were added to show the queue.
+Confirmed output complies with FIFO scheduling
 
-**Solution**: 
+**Challenges**: Formatting the output of the queue
 
-**Time spent**: 
+**Solution**:  Used loops and string formatting
 
----
-
-### Entry 2 - [Date and Time]
-**What I did**: 
-
-**Details**: 
-
-**Challenges**: 
-
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: 1.5 hours
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**: 
+### Entry 3 - [March 30, 2026, 3:00 PM]
+**What I did**: Implemented Feature 2 (Context Switch Counter)
 
 **Details**: 
+-Added contextSwitches variable
+- Incremented it before each thread execution
+- Printed final result
 
-**Challenges**: 
+**Challenges**: Finding correct placement of counter
 
-**Solution**: 
+**Solution**:  Placed it before start() after understanding scheduling 
 
-**Time spent**: 
+**Time spent**: 1 hour
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**: 
+### Entry 4 -  [March 30, 2026, 4:00 PM]
+**What I did**: Implemented Feature 3 (Waiting Time calculation)
 
 **Details**: 
+- Added arrivalTime and waitingTime variables
+- Calculated waiting time before execution
+- Updated arrival time after each run
 
-**Challenges**: 
+**Challenges**: Errors with process variable not defined
 
-**Solution**: 
+**Solution**: Fixed by defining process using processMap
 
-**Time spent**: 
+
+**Time spent**: 2 hours
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**: 
+### Entry 5 - [March 30, 2026, 7:00 PM]
+**What I did**: Tested program and wrote answers
 
 **Details**: 
+- Verified output correctness
+- Observed process re-queue behavior
+- Completed assignment answers
 
-**Challenges**: 
 
-**Solution**: 
+**Challenges**: Understanding thread states
 
-**Time spent**: 
+**Solution**: I relied on actual execution rather than theory, which made the concept clearer.
+
+
+**Time spent**:  1.5 hours
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
-**What I did**: 
-
-**Details**: 
-
-**Challenges**: 
-
-**Solution**: 
-
-**Time spent**: 
-
 ---
+
 
 ## Summary
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [10 hours]
 
 **Most challenging part**: 
 
+Understanding how Round-Robin scheduling uses threads—particularly tracking process movement in the ready queue and accurately computing waiting time—was the most difficult aspect. It was also challenging to debug problems like undefined variables and improper code placement (like arrivalTime updates).
+
 **Most interesting learning**: 
+Seeing how processes are scheduled in real time and how time quantum is used to provide each task a fair share of CPU was the most fascinating aspect. The concept became much evident when one saw the output's ready queue modifications and context switching.
+
 
 **What I would do differently next time**: 
+
+
+The next time, in order to prevent mistakes, I would thoroughly outline the implementation before coding and test each feature independently. Additionally, I would trace variables step-by-step earlier in the process to enhance my debugging methodology.
